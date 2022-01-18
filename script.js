@@ -21,6 +21,9 @@ const question ={
     answer: "blue"
     }
     ]
+    console.log(questionsArray)
+    console.log(questionsArray[0])
+    console.log(questionsArray[0].answer)
 //
 // question[0]= {
 //   phrase: "What color is the sky?",
