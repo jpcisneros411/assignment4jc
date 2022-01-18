@@ -1,26 +1,42 @@
 const question ={
-  questionPhrase: "",
-  answerChoices: [answer1,answer2,answer3,answer4],
+  phrase: "",
+  choices: [],
   answer: ""
 };
 
-const questionArray = new question[i];
-
-question[0]= {
-  questionPhrase = "What color is the sky?",
-  answerChoices: ["blue","green","red","yellow"],
-  answer: "blue"
-};
-question[1]= {
-  questionPhrase = "What flavor was the jelly?",
-  answerChoices: ["blue","grape","red","yellow"],
-  answer: "grape"
-};
-question[2]= {
-  questionPhrase = "What my name is?",
-  answerChoices: ["blue","green","red","Jason"],
-  answer: "blue"
-};
+  const questionsArray = [
+    {
+    phrase: "What color is the sky?",
+    choices: ["blue","green","red","yellow"],
+    answer: "blue"
+    },
+    {
+    phrases: "What flavor was the jelly?",
+    choices: ["blue","grape","red","yellow"],
+    answer: "grape"
+    },
+    {
+    phrases: "What my name is?",
+    choices: ["blue","green","red","Jason"],
+    answer: "blue"
+    }
+    ]
+//
+// question[0]= {
+//   phrase: "What color is the sky?",
+//   choices: ["blue","green","red","yellow"],
+//   answer: "blue"
+// };
+// question[1]= {
+//   phrase: "What flavor was the jelly?",
+//   choices: ["blue","grape","red","yellow"],
+//   answer: "grape"
+// };
+// question[2]= {
+//   phrase: "What my name is?",
+//   choices: ["blue","green","red","Jason"],
+//   answer: "blue"
+// };
 // ///
 
 // var timerElement = document.querySelector(".timer-count");
