@@ -1,8 +1,25 @@
+document.body.onload = addElement;
 const question ={
   phrase: "",
   choices: [],
   answer: ""
 };
+//const myElement = document.getElementById("intro");
+function addElement(){
+  
+
+//console.log(myElement);
+//myElement.setAttribute("intro", "Welcome to the Coding Quiz!");
+// let element = document.createElement("div");
+const newDiv = document.createElement("div");
+const newContent = document.createTextNode("Question 1: What color is the sky?")
+newDiv.appendChild(newContent);
+const currentDiv = document.getElementById("intro");
+document.body.insertBefore(newDiv,currentDiv);
+
+};
+//console.log(myElement);
+
 
   const questionsArray = [
     {
