@@ -4,6 +4,15 @@ const intro = document.getElementById("intro");
 const headline = document.querySelector("#headline") ;
 intro.textContent = "Welcome to the Coding Quiz";
 headline.textContent = "Hello, this is a practice quiz to help with interviews.";
+var buttonStart = document.querySelector("#button1");
+let btn = document.createElement(button);
+// let btn2 = document.createElement(button);
+// let btn3 = document.createElement(button);
+// let btn4 = document.createElement(button);
+btn.innerHTML = "Click me";
+// btn2.innerHTML = ""
+// btn3.innerHTML = ""
+// btn4.innerHTML = ""
 
 
   const questionsArray = [
@@ -46,7 +55,14 @@ function countdown() {
 var startButton = document.querySelector(".start-button");
 
 function houdini(){
-  intro.textContent = questionsArray[0].phrases[0];
+  intro.textContent = questionsArray[0].phrases;
+  buttonStart.textContent = "";
+  headline.textContent = "";
+  document.body.appendChild(btn);
+  // document.body.appendChild(btn2);
+  // document.body.appendChild(btn3);
+  // document.body.appendChild(btn4);
+
 }
 
 startButton.addEventListener("click", countdown);
