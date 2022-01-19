@@ -5,15 +5,15 @@ const headline = document.querySelector("#headline") ;
 intro.textContent = "Welcome to the Coding Quiz";
 headline.textContent = "Hello, this is a practice quiz to help with interviews.";
 var buttonStart = document.querySelector("#button1");
-let btn = document.createElement(button);
-// let btn2 = document.createElement(button);
-// let btn3 = document.createElement(button);
-// let btn4 = document.createElement(button);
-btn.innerHTML = "Click me";
-// btn2.innerHTML = ""
-// btn3.innerHTML = ""
-// btn4.innerHTML = ""
-
+let btn = document.createElement('button');
+let btn2 = document.createElement('button');
+let btn3 = document.createElement('button');
+let btn4 = document.createElement('button');
+btn.innerHTML = "A.";
+btn2.innerHTML = "B.";
+btn3.innerHTML = "C.";
+btn4.innerHTML = "D.";
+var score = 0;
 
   const questionsArray = [
     {
@@ -59,9 +59,28 @@ function houdini(){
   buttonStart.textContent = "";
   headline.textContent = "";
   document.body.appendChild(btn);
-  // document.body.appendChild(btn2);
-  // document.body.appendChild(btn3);
-  // document.body.appendChild(btn4);
+  document.body.appendChild(btn2);
+  document.body.appendChild(btn3);
+  document.body.appendChild(btn4);
+
+  btn.textContent = questionsArray[0].choices[0];
+  btn2.textContent = questionsArray[0].choices[1];
+  btn3.textContent = questionsArray[0].choices[2];
+  btn4.textContent = questionsArray[0].choices[3];
+
+  btn.addEventListener("click",compare);
+  btn2.addEventListener("click",compare);
+  btn3.addEventListener("click",compare);
+  btn4.addEventListener("click",compare);
+
+  function compare(){
+    if (questionsArray[0].choices[i] == questionsArray[0].answer){
+      score ++;
+    }
+    else{
+      timeLeft - 5;
+    }
+  }
 
 }
 
