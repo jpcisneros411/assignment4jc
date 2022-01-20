@@ -1,7 +1,7 @@
 var timerEl = document.querySelector(".countdown")
 var mainEl = document.getElementById('main');
-const intro = document.getElementById("intro");
-const headline = document.querySelector("#headline") ;
+var intro = document.getElementById("intro");
+var headline = document.querySelector("#headline") ;
 intro.textContent = "Welcome to the Coding Quiz";
 headline.textContent = "Hello, this is a practice quiz to help with interviews.";
 var buttonStart = document.querySelector("#button1");
@@ -9,11 +9,32 @@ let btn = document.createElement('button');
 let btn2 = document.createElement('button');
 let btn3 = document.createElement('button');
 let btn4 = document.createElement('button');
-btn.innerHTML = "A.";
-btn2.innerHTML = "B.";
-btn3.innerHTML = "C.";
-btn4.innerHTML = "D.";
 var score = 0;
+var timeLeft = 10;
+var questionNumber = 0;
+var f = document.createElement("input");
+var timeInterval;
+var initialInput = document.querySelector(".initialInput");
+var submitInitials = document.querySelector("#submitInitials");
+var inputData = document.querySelector("#inputData");
+
+// f.setAttribute('method',"post");
+// f.setAttribute('action',"submit.php");
+
+// f.appendChild(i);
+// f.appendChild(s);
+
+// document.getElementsByTagName('body')[0].appendChild(f);
+
+// var i = document.createElement("input");
+// i.type = "text";
+// i.name = "user_name";
+// i.id = "user_name1";
+
+// var s = document.createElement("input");
+// s.type = "submit";
+// s.value = "Submit";
+
 
   const questionsArray = [
     {
@@ -30,16 +51,31 @@ var score = 0;
     phrases: "What my name is?",
     choices: ["blue","green","red","Jason"],
     answer: "Jason"
+    },
+    {
+    phrases: "Where is the juice?",
+    choices: ["blue","grape","loose","yellow"],
+    answer: "loose"
+    },
+    {
+    phrases: "What gonna win a dollar?",
+    choices: ["me","grape","red","yellow"],
+    answer: "me"
+    },
+    {
+    phrases: "What kind of taco I want?",
+    choices: ["blue","grape","fajita","yellow"],
+    answer: "fajita"
     }
     ]
-    console.log(questionsArray);
-    console.log(questionsArray[0].choices[2]);
-    console.log(questionsArray[0].answer);
+    // console.log(questionsArray);
+    // console.log(questionsArray[questionNumber].choices[2]);
+    // console.log(questionsArray[questionNumber].answer);
 
 function countdown() {
-  var timeLeft = 15;
+ console.log(timeLeft);
 
- var timeInterval = setInterval(function () {
+ timeInterval = setInterval(function () {
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft + ' seconds remaining';
       timeLeft--;
@@ -55,7 +91,7 @@ function countdown() {
 var startButton = document.querySelector(".start-button");
 
 function houdini(){
-  intro.textContent = questionsArray[0].phrases;
+  intro.textContent = questionsArray[questionNumber].phrases;
   buttonStart.textContent = "";
   headline.textContent = "";
   document.body.appendChild(btn);
@@ -63,74 +99,66 @@ function houdini(){
   document.body.appendChild(btn3);
   document.body.appendChild(btn4);
 
-  btn.textContent = questionsArray[0].choices[0];
-  btn2.textContent = questionsArray[0].choices[1];
-  btn3.textContent = questionsArray[0].choices[2];
-  btn4.textContent = questionsArray[0].choices[3];
+  btn.textContent = questionsArray[questionNumber].choices[0];
+  btn2.textContent = questionsArray[questionNumber].choices[1];
+  btn3.textContent = questionsArray[questionNumber].choices[2];
+  btn4.textContent = questionsArray[questionNumber].choices[3];
 
-  btn.addEventListener("click",compare);
-  btn2.addEventListener("click",compare);
-  btn3.addEventListener("click",compare);
-  btn4.addEventListener("click",compare);
-
-  function compare(){
-    if (questionsArray[0].choices[i] == questionsArray[0].answer){
-      score ++;
-    }
-    else{
-      timeLeft - 5;
-    }
-  }
+  btn.value = questionsArray[questionNumber].choices[0];
+  btn2.value = questionsArray[questionNumber].choices[1];
+  btn3.value = questionsArray[questionNumber].choices[2];
+  btn4.value = questionsArray[questionNumber].choices[3];
 
 }
-
-startButton.addEventListener("click", countdown);
-startButton.addEventListener("click", houdini)
-    //
-// // question[0]= {
-// //   phrase: "What color is the sky?",
-// //   choices: ["blue","green","red","yellow"],
-// //   answer: "blue"
-// // };
-// // question[1]= {
-// //   phrase: "What flavor was the jelly?",
-// //   choices: ["blue","grape","red","yellow"],
-// //   answer: "grape"
-// // };
-// // question[2]= {
-// //   phrase: "What my name is?",
-// //   choices: ["blue","green","red","Jason"],
-// //   answer: "blue"
-// // };
-// // ///
-// var win = document.querySelector(".win");
-// var lose = document.querySelector(".lose");
-// var timerElement = document.querySelector(".timer-count");
-
-// // var win = document.querySelector(".win");
-// // var lose = document.querySelector(".lose");
-
-// var timer;
-// var timerCount;
-
-// var isWin = false;
-
-// // The startGame function is called when the start button is clicked
-// function startGame() {
-//     isWin = false;
-//     timerCount = 10;
-//     // Prevents start button from being clicked when round is in progress
-//     startButton.disabled = true;
-//     //renderBlanks()
-//     startTimer()
-//   }
-
-//   function winGame() {
-//     wordBlank.textContent = "YOU WON!!!🏆 ";
-//     winCounter++
-//     startButton.disabled = false;
-//     setWins()
-//   }
-
   
-
+  function compare(event){
+    console.log("compare")
+    var selectedButton = event.target;
+    if (selectedButton.value == questionsArray[questionNumber].answer){
+      score++;
+    }
+    else{
+      timeLeft -= 5;
+    }
+    questionNumber++;
+    if (questionNumber>=questionsArray.length){
+      console.log(score);
+      gameOver();
+    } else{
+      houdini();
+      if (timeLeft <= 0){
+          gameOver();
+        }
+        console.log(score);
+      }
+    }
+    
+  
+  function gameOver(){
+      console.log(gameOver);
+      clearInterval(timeInterval);
+      intro.textContent="";
+      initialInput.removeAttribute("class");
+      timerEl.textContent="";
+      btn.setAttribute("class","initialInput");
+      btn2.setAttribute("class","initialInput");
+      btn3.setAttribute("class","initialInput");
+      btn4.setAttribute("class","initialInput");
+    }
+    
+    function highScores(){
+      console.log("potato");
+      var initials = inputData.value;
+      console.log(initials);
+      console.log(score);
+      localStorage.setItem(score, initials);
+    }
+    
+    submitInitials.addEventListener("click",highScores);
+    startButton.addEventListener("click", countdown);
+    startButton.addEventListener("click", houdini)
+    btn.addEventListener("click",compare);
+    btn2.addEventListener("click",compare);
+    btn3.addEventListener("click",compare);
+    btn4.addEventListener("click",compare);
+    
